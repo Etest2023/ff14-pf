@@ -114,12 +114,22 @@ const jobImages = import.meta.glob('@jobs/base/*.png', {
     eager: true,
 });
 
+const jobFilledImages = import.meta.glob('@jobs/filled/*.png', {
+    import: 'default',
+    eager: true,
+});
+
 const jobImageKeys = Object.keys(jobImages);
 const jobImageNames = jobImageKeys.map(
     (key) => key.split('/').pop().split('.')[0],
 );
 export const getJobImgByName = (name, filled = false) => {
-    let res = jobImages[jobImageKeys[jobImageNames.indexOf(name)]] || '';
-    if (filled) res = res.replace('base/', 'filled/');
-    return res;
+    let key = jobImageKeys[jobImageNames.indexOf(name)];
+
+    if (filled) {
+        key = key.replace('base/', 'filled/');
+        return jobFilledImages[key] || '';
+    }
+
+    return jobImages[key] || '';
 };
