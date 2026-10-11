@@ -1,11 +1,12 @@
 {
-  "name": "xivpf",
+  "name": "ff14-pf",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "vite build --base /ff14-pf/",
     "preview": "vite preview"
   },
   "dependencies": {
