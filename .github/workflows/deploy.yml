@@ -4,7 +4,7 @@ name: build and deploy
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: [$default-branch]
+    branches: ["main"]
     paths-ignore:
       - '.github/**'
       - '*.md'
