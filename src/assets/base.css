@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'FFXIV';
+    src:
+        url('./FFXIV_Lodestone_SSF.ttf') format('truetype'),
+        url('./FFXIV_Lodestone_SSF.woff') format('woff');
+    unicode-range: U+E020-E0DB;
+}
+
+:root {
+    --max-width: 1800px;
+    --sidebar-width: 376px;
+    --main-padding-h: 24px;
+    --main-padding-right: 400px;
+
+    --var-header-height: 64px;
+    --var-header-icon-size: 32px;
+
+    --var-title-size: 24px;
+
+    --var-grid-template-columns: 2fr 300px 0.5fr 1fr 1fr;
+
+    --svg-search: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(162, 175, 185, 1)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'></circle><line x1='21' y1='21' x2='16.65' y2='16.65'></line></svg>");
+    --svg-refresh: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAyOSAxMDI0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgcC1pZD0iNjkzOSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiPjxwYXRoIGQ9Ik0xMDA3LjIgMjYyLjRjLTEyLjgtNi40LTMyIDAtMzguNCAxOS4ybC0yNS42IDcwLjRDOTA0LjggMjU2IDg0Ny4yIDE3OS4yIDc1Ny42IDEyOGMtMTA4LjgtNjQtMjMwLjQtODkuNi0zNTItNTcuNkMyMzIuOCAxMDguOCAxMDQuOCAyMzYuOCA2MCA0MDkuNiA1My42IDQyOC44IDY2LjQgNDQxLjYgNzkuMiA0NDggOTguNCA0NDggMTExLjIgNDQxLjYgMTE3LjYgNDIyLjRjMzguNC0xNTMuNiAxNTMuNi0yNjguOCAzMDcuMi0zMDAuOCAxMDguOC0yNS42IDIxNy42LTYuNCAzMDcuMiA1MS4yIDc2LjggNDQuOCAxMzQuNCAxMTUuMiAxNjYuNCAxOTguNGwtNzYuOC0zMmMtMTIuOC02LjQtMzIgMC0zOC40IDE5LjItNi40IDEyLjggMCAzMiAxMi44IDM4LjRsMTI4IDUxLjJjNi40IDYuNCAxMi44IDYuNCAxOS4yIDYuNCAwIDAgNi40IDAgNi40IDAgMCAwIDAgMCAwIDAgMCAwIDAgMCA2LjQgMCA2LjQgMCAxMi44LTYuNCAxMi44LTEyLjhMMTAyNi40IDI5NC40QzEwMzIuOCAyODEuNiAxMDIwIDI2OC44IDEwMDcuMiAyNjIuNHpNOTQ5LjYgNTc2Yy0xMi44LTYuNC0zMiA2LjQtMzIgMTkuMi0zOC40IDE1My42LTE1My42IDI2OC44LTMwNy4yIDMwMC44LTEwOC44IDI1LjYtMjE3LjYgNi40LTMwNy4yLTUxLjItNzYuOC00NC44LTEzNC40LTExNS4yLTE2Ni40LTE5OC40bDc2LjggMzJjMTIuOCA2LjQgMzIgMCAzOC40LTE5LjIgNi40LTEyLjggMC0zMi0xMi44LTM4LjRMMTA0LjggNTc2Qzk4LjQgNTc2IDkyIDU2OS42IDg1LjYgNTY5LjZjMCAwLTYuNCAwLTYuNCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAtNi40IDBDNjYuNCA1NzYgNjAgNTgyLjQgNjAgNTg4LjhMMi40IDcyOS42Yy02LjQgMTIuOCAwIDMyIDE5LjIgMzguNCAxMi44IDYuNCAzMiAwIDM4LjQtMTkuMmwyNS42LTcwLjRDMTI0IDc2OCAxODEuNiA4NDQuOCAyNzEuMiA4OTZjMTA4LjggNjQgMjMwLjQgODkuNiAzNTIgNTcuNiAxNzIuOC0zOC40IDMwNy4yLTE3Mi44IDM0NS42LTM0NS42Qzk3NS4yIDU5NS4yIDk2Mi40IDU4Mi40IDk0OS42IDU3NnoiIGZpbGw9IiMwMDAiIHAtaWQ9IjY5NDAiPjwvcGF0aD48L3N2Zz4=');
+}
+
+[data-theme='light'] {
+    --color-background: rgb(247, 221, 186);
+    --color-background-alt: rgb(242, 211, 173);
+    --color-header-background: rgb(247, 221, 186);
+    --color-header-border: rgb(195, 159, 124);
+    --color-text: rgb(163, 135, 103);
+    --color-title: rgb(68, 118, 137);
+    --color-title-hover: #455ccb;
+    --color-text-highlight: rgb(68, 118, 137);
+    --color-filter-plain: rgb(234, 234, 234);
+    --color-filter-plain-bg: rgb(79, 45, 13);
+}
+[data-theme='dark'] {
+    --color-background: rgb(49, 48, 49);
+    --color-background-alt: rgb(60, 59, 60);
+    --color-header-background: rgb(49, 48, 49);
+    --color-header-border: rgb(64, 62, 64);
+    --color-text: rgb(150, 150, 150);
+    --color-title: rgb(121, 199, 236);
+    --color-title-hover: #455ccb;
+    --color-text-highlight: rgb(121, 199, 236);
+    --color-filter-plain: rgb(234, 234, 234);
+    --color-filter-plain-bg: rgb(82, 82, 82);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: normal;
+}
+
+body {
+    height: 100vh;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition:
+        color 0.5s,
+        background-color 0.5s;
+    line-height: 20px;
+    font-family:
+        FFXIV,
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        'Fira Sans',
+        'Droid Sans',
+        'Helvetica Neue',
+        sans-serif;
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
