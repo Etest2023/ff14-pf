@@ -4,7 +4,7 @@ name: build and deploy
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: [$default-branch]
+    branches: ["main"]
     paths-ignore:
       - '.github/**'
       - '*.md'
@@ -66,4 +66,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
