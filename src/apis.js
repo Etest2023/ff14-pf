@@ -2,6 +2,19 @@ import { DpsStrs, HealerStrs, JobCNMap, TankStrs } from './constants';
 
 const API_URL = 'https://xivpf.littlenightmare.top/api/';
 
+// 添加前端私有数据、处理后端特异数据
+const handleData = (data) => {
+    if (!data) return data;
+    if (data.error) return data;
+    if (data.id) {
+        data._timeLeft = formatTime(data.time_left);
+        data._updateBefore = dateToPassedTime(data.updated_at);
+        data.category === 'AdventuringForays' && (data.category = 'FieldOperations');
+        data.duty === 'FATEs' && (data.duty = '所有地点');
+    }
+    return data;
+}
+
 function formatTime(second) {
     return parseInt(second / 60) + '分';
 }
@@ -23,9 +36,9 @@ export const getList = ({
     pageSize = 10,
     search,
 }) => {
-    let url = `${API_URL}listings?page=${page}&per_page=${pageSize}&datacenter=${datacenter}&category=${category}`;
+    let url = `${API_URL}listings?page=${page}&per_page=${pageSize}&datacenter=${datacenter}&category=${encodeURIComponent(category)}`;
     if (search) {
-        url += `&search=${search}`;
+        url += `&search=${encodeURIComponent(search)}`;
     }
     return fetch(url)
         .then((res) => res.json())
@@ -46,8 +59,8 @@ export const getDetail = (id) => {
             if (result.error) {
                 return result;
             }
-            result._timeLeft = formatTime(result.time_left);
-            result._updateBefore = dateToPassedTime(result.updated_at);
+            result = handleData(result);
+
             result.slots.forEach((slot) => {
                 if (!slot.job) return;
 
