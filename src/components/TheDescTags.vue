@@ -12,13 +12,13 @@ const props = defineProps({
     <template v-if="data">
         <span
             class="tag objective"
-            v-if="data.objective && data.objective !== 'NONE'"
+            v-if="data.objective && data.objective !== 'NONE' && strToCN[data.objective]"
             :class="data.objective"
             >[{{ strToCN[data.objective] }}]</span
         >
         <span
             class="tag conditions"
-            v-if="data.conditions && data.conditions !== 'NONE'"
+            v-if="data.conditions && data.conditions !== 'NONE' && strToCN[data.conditions]"
             :class="data.conditions"
             >[{{ strToCN[data.conditions] }}]</span
         >
