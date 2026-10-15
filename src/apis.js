@@ -43,10 +43,7 @@ export const getList = ({
     return fetch(url)
         .then((res) => res.json())
         .then((result) => {
-            result?.data?.forEach((item) => {
-                item._timeLeft = formatTime(item.time_left);
-                item._updateBefore = dateToPassedTime(item.updated_at);
-            });
+            result?.data?.forEach(handleData);
             return result;
         });
 };
