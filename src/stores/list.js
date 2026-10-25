@@ -27,7 +27,10 @@ export const useListStore = defineStore('list', () => {
                         getDetailApi(item.id).then((detail) => {
                             if (!detail) return;
                             if (detail.error) return;
-                            list.value[index] = detail;
+                            const old = list.value[index];
+                            if (old.id === detail.id) {
+                                list.value[index] = detail;
+                            }
                         });
                     });
                 }

@@ -30,7 +30,7 @@ const RadioGroupObj = RadioGroup.map((item) => ({
                 selected: props.data === item.key,
                 plain: item.key === 'None',
             }"
-            @click="$emit('setData', item.key)">
+            @mousedown.prevent="$emit('setData', item.key)">
             <img v-if="item.image" :src="item.image" alt="任务图标" />
             <div v-else class="txt">{{ categoryMap[item.key] }}</div>
             <input
