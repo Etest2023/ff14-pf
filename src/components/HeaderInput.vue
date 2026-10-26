@@ -13,8 +13,10 @@ defineEmits(['setData']);
     <div class="keyword-ct">
         <input
             id="keyword"
+            name="keyword"
             type="text"
             placeholder="搜索关键词"
+            autocomplete="on"
             :value="data"
             @change="$emit('setData', $event.target.value)" />
         <div class="clicker" @click="$emit('setData', data)"></div>

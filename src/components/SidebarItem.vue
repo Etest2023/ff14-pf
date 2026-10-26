@@ -12,6 +12,7 @@ const props = defineProps({
         required: true,
     },
 });
+const { setCategory, setKeyword } = useFilterStore();
 
 const showCategory = computed(() => {
     return props.data.category && props.data.category !== 'None';
@@ -24,8 +25,9 @@ function mayExpired(date) {
     return new Date() - new Date(date) > 60 * 1000;
 }
 
-function setKeyword(keyword) {
-    useFilterStore().setKeyword(keyword);
+function setCateAndKeyword(category, keyword) {
+    setCategory(category);
+    setKeyword(keyword);
 }
 function removeTrack(id) {
     useTrackStore().removeTrack(id);
@@ -44,12 +46,12 @@ function removeTrack(id) {
                     class="title"
                     :class="{ rtl: data.category !== 'Guildhests' }"
                     :title="data.duty"
-                    @click="setKeyword(data.duty)">
+                    @click="setCateAndKeyword(data.category, data.duty)">
                     {{ data.duty }}
                 </div>
             </div>
             <div class="player-name">
-                <span title="点击作为搜索词" @click="setKeyword(data.name)">{{
+                <span title="点击作为搜索词" @click="setCateAndKeyword(data.category, data.name)">{{
                     data.name
                 }}</span
                 >@{{ data.home_world }}

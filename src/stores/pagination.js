@@ -7,6 +7,7 @@ const startPage = 1;
 const defaultPageSize = 10;
 const minPageSize = 5;
 const maxPageSize = 50;
+let debounce = null;
 
 export const usePaginationStore = defineStore('pagination', () => {
     const currentPage = ref(startPage);
@@ -41,7 +42,10 @@ export const usePaginationStore = defineStore('pagination', () => {
     function reset() {
         setPage(1);
         setTotal(0);
-        useListStore().getList();
+        if (debounce) clearTimeout(debounce);
+        debounce = setTimeout(() => {
+            useListStore().getList();
+        }, 300);
     }
     function prevPage() {
         if (currentPage.value > 1) {
