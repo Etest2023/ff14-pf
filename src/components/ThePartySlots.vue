@@ -1,6 +1,6 @@
 <script setup>
 import {
-    getJobImgByName,
+    getJobIconStyle,
     TankStrs,
     HealerStrs,
     DpsStrs,
@@ -44,9 +44,7 @@ function parseJobTxt(data) {
             }"
             :style="
                 slot.job_id.length <= 1
-                    ? {
-                          backgroundImage: `url(${getJobImgByName(slot.job, slot.filled)})`,
-                      }
+                    ? getJobIconStyle(slot.job, slot.filled)
                     : {}
             ">
             {{ parseJobTxt(slot) || '' }}

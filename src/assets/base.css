@@ -1,8 +1,9 @@
 @font-face {
     font-family: 'FFXIV';
     src:
-        url('./FFXIV_Lodestone_SSF.ttf') format('truetype'),
-        url('./FFXIV_Lodestone_SSF.woff') format('woff');
+        url('./FFXIV_Lodestone_SSF.woff') format('woff'),
+        url('./FFXIV_Lodestone_SSF.ttf') format('truetype');
+    font-display: swap;
     unicode-range: U+E020-E0DB;
 }
 

@@ -21,5 +21,15 @@ export default defineConfig({
   },
   build: {
     assetsInlineLimit: 10240, // 10KB 以下的资源内联为 base64
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('pinia')) return 'pinia';
+            if (id.includes('vue')) return 'vue';
+          }
+        },
+      },
+    },
   },
 })
