@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, watch, nextTick, onMounted, onBeforeUnmount } from 'vue';
 import HeaderSelector from './HeaderSelector.vue';
 import HeaderRadioGroup from './HeaderRadioGroup.vue';
 import HeaderInput from './HeaderInput.vue';
@@ -28,6 +28,17 @@ onMounted(() => {
 });
 onBeforeUnmount(() => {
     document.removeEventListener('click', onDocClick);
+});
+watch(showFilter, async (open) => {
+    let height = 0;
+    if (open) {
+        await nextTick();
+        height = filterRef.value?.offsetHeight ?? 0;
+    }
+    document.documentElement.style.setProperty(
+        '--filter-panel-height',
+        `${height}px`
+    );
 });
 </script>
 
@@ -83,7 +94,7 @@ header {
     align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .wrapper {
         padding: 0 12px;
     }

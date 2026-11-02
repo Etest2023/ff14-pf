@@ -44,6 +44,7 @@ main {
     padding-left: var(--main-padding-h);
     padding-right: var(--main-padding-right);
     padding-bottom: 60px;
+    padding-bottom: calc(60px + env(safe-area-inset-bottom));
 }
 .grid-header {
     padding-top: 8px;
@@ -73,14 +74,16 @@ footer {
     left: 0;
     right: 0;
     height: 60px;
+    height: calc(60px + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
     z-index: 1;
     border-top: 1px solid var(--color-header-border);
     background-color: var(--color-header-background);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     main {
-        padding-bottom: 60px;
+        margin-top: var(--filter-panel-height, 0px);
     }
     .grid-header {
         display: none;

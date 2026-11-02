@@ -60,7 +60,7 @@ defineEmits(['setData']);
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .keyword-ct {
         padding-left: 0;
         input {

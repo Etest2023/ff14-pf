@@ -142,7 +142,7 @@ aside {
     pointer-events: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     aside {
         display: none;
     }

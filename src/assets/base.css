@@ -84,7 +84,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     :root {
         --main-padding-h: 12px;
         --main-padding-right: 12px;

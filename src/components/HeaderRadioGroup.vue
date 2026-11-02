@@ -112,7 +112,7 @@ const RadioGroupObj = RadioGroup.map((item) => ({
     background-color: var(--color-filter-plain-bg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .radio-group {
         flex-wrap: wrap;
         gap: 4px;

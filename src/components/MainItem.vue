@@ -166,7 +166,7 @@ function addTrack(id, data) {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .btn-area {
         display: none;
     }
@@ -181,48 +181,16 @@ function addTrack(id, data) {
         row-gap: 6px;
         align-items: center;
     }
-    /* 第一行：任务名 */
-    .title {
-        order: 1;
-        flex: 0 0 100%;
+    .info .col {
         min-width: 0;
+    }
+    .title {
         font-size: 20px;
         line-height: 28px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
-    /* 第二行：招募人（左） + 时间（右），两端对齐 */
-    .name {
-        order: 2;
-        flex: 1 1 auto;
-        min-width: 0;
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .col:nth-child(5) {
-        order: 3;
-        flex: 0 0 auto;
-        min-width: 0;
-        text-align: right;
-        font-size: 14px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    /* 第三行：职能（左） + 平均品级（右），两端对齐 */
     .party-wrap {
         height: 32px;
         min-width: 270px;
-    }
-    .col:nth-child(2) {
-        order: 4;
-        flex: 0 0 auto;
-        min-width: 0;
-        overflow: visible;
-        white-space: normal;
     }
     :deep(.party) {
         height: auto;
@@ -230,17 +198,81 @@ function addTrack(id, data) {
     :deep(.slot) {
         flex-shrink: 0;
     }
-    .col:nth-child(3) {
-        order: 5;
-        flex: 1 1 0;
-        min-width: 0;
-        text-align: right;
-        white-space: nowrap;
-    }
     .desc {
         padding-left: 0;
         padding-top: 6px;
         line-height: 20px;
+    }
+}
+
+/* 手机：4 行布局 */
+@media (max-width: 768px) {
+    /* 第一行：任务名 */
+    .title {
+        order: 1;
+        flex: 0 0 100%;
+    }
+    /* 第二行：招募人（左） + 时间（右），两端对齐 */
+    .name {
+        order: 2;
+        flex: 1 1 auto;
+        text-align: left;
+    }
+    .col:nth-child(5) {
+        order: 3;
+        flex: 0 0 auto;
+        text-align: right;
+        font-size: 14px;
+    }
+    /* 第三行：职能（左） + 平均品级（右），两端对齐 */
+    .col:nth-child(2) {
+        order: 4;
+        flex: 0 0 auto;
+        overflow: visible;
+        white-space: normal;
+    }
+    .col:nth-child(3) {
+        order: 5;
+        flex: 1 1 0;
+        text-align: right;
+    }
+}
+
+/* 平板：3 行布局 */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .info {
+        display: grid;
+        grid-template-columns: auto 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+    /* 第一行：任务名（左） + 招募人（右） */
+    .title {
+        grid-row: 1;
+        grid-column: 1 / 3;
+    }
+    .name {
+        grid-row: 1;
+        grid-column: 3;
+        text-align: right;
+    }
+    /* 第二行：职能（左） + 平均品级（中） + 时间（右） */
+    .col:nth-child(2) {
+        grid-row: 2;
+        grid-column: 1;
+        overflow: visible;
+        white-space: normal;
+    }
+    .col:nth-child(3) {
+        grid-row: 2;
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+    }
+    .col:nth-child(5) {
+        grid-row: 2;
+        grid-column: 3;
+        text-align: right;
+        font-size: 14px;
     }
 }
 </style>

@@ -181,7 +181,7 @@ function toggleTheme(newTheme) {
     background-color: var(--color-text);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .footer-info {
         display: none;
     }

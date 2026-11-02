@@ -93,7 +93,7 @@ const selected = computed(() => {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .selector-ct {
         width: auto;
         padding-right: 0;
