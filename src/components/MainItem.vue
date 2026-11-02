@@ -49,9 +49,11 @@ function addTrack(id, data) {
                     }}</span>
                 </div>
                 <div class="col">
-                    <ThePartySlots
-                        v-if="data.slots && data.slots.length > 0"
-                        :slots="data.slots" />
+                    <div class="party-wrap">
+                        <ThePartySlots
+                            v-if="data.slots && data.slots.length > 0"
+                            :slots="data.slots" />
+                    </div>
                 </div>
                 <div class="col">
                     {{ data.min_item_level > 0 ? data.min_item_level : '无' }}
@@ -117,6 +119,9 @@ function addTrack(id, data) {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.party-wrap {
+    height: 100%;
+}
 .title {
     padding-left: 8px;
     font-size: 18px;
@@ -158,6 +163,84 @@ function addTrack(id, data) {
         &:hover {
             opacity: 1;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .btn-area {
+        display: none;
+    }
+    .grid-item {
+        padding: 8px;
+    }
+    .info {
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        line-height: 24px;
+        row-gap: 6px;
+        align-items: center;
+    }
+    /* 第一行：任务名 */
+    .title {
+        order: 1;
+        flex: 0 0 100%;
+        min-width: 0;
+        font-size: 20px;
+        line-height: 28px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    /* 第二行：招募人（左） + 时间（右），两端对齐 */
+    .name {
+        order: 2;
+        flex: 1 1 auto;
+        min-width: 0;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .col:nth-child(5) {
+        order: 3;
+        flex: 0 0 auto;
+        min-width: 0;
+        text-align: right;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    /* 第三行：职能（左） + 平均品级（右），两端对齐 */
+    .party-wrap {
+        height: 32px;
+        min-width: 270px;
+    }
+    .col:nth-child(2) {
+        order: 4;
+        flex: 0 0 auto;
+        min-width: 0;
+        overflow: visible;
+        white-space: normal;
+    }
+    :deep(.party) {
+        height: auto;
+    }
+    :deep(.slot) {
+        flex-shrink: 0;
+    }
+    .col:nth-child(3) {
+        order: 5;
+        flex: 1 1 0;
+        min-width: 0;
+        text-align: right;
+        white-space: nowrap;
+    }
+    .desc {
+        padding-left: 0;
+        padding-top: 6px;
+        line-height: 20px;
     }
 }
 </style>

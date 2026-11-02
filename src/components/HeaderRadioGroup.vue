@@ -111,4 +111,14 @@ const RadioGroupObj = RadioGroup.map((item) => ({
     border-radius: 6px;
     background-color: var(--color-filter-plain-bg);
 }
+
+@media (max-width: 768px) {
+    .radio-group {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .radio-item {
+        margin-right: 0;
+    }
+}
 </style>

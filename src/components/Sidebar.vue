@@ -142,6 +142,12 @@ aside {
     pointer-events: none;
 }
 
+@media (max-width: 768px) {
+    aside {
+        display: none;
+    }
+}
+
 .sidebar {
     position: absolute;
     top: 0;

@@ -187,4 +187,10 @@ function removeTrack(id) {
 .refresh {
     margin-left: 4px;
 }
+
+@media (max-width: 768px) {
+    .btn-area {
+        display: none;
+    }
+}
 </style>

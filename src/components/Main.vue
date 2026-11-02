@@ -77,4 +77,13 @@ footer {
     border-top: 1px solid var(--color-header-border);
     background-color: var(--color-header-background);
 }
+
+@media (max-width: 768px) {
+    main {
+        padding-bottom: 60px;
+    }
+    .grid-header {
+        display: none;
+    }
+}
 </style>

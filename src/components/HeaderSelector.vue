@@ -92,4 +92,48 @@ const selected = computed(() => {
         height: 40px;
     }
 }
+
+@media (max-width: 768px) {
+    .selector-ct {
+        width: auto;
+        padding-right: 0;
+
+        .selector-value {
+            display: none;
+        }
+        .selector-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px;
+            position: static;
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+        }
+        .item {
+            flex: 0 0 calc((100% - 32px) / 5);
+            max-width: calc((100% - 32px) / 5);
+            padding: 4px 4px;
+            justify-content: center;
+            border-radius: 6px;
+            background-color: var(--color-background-alt);
+            color: var(--color-text);
+            border: 1px solid transparent;
+
+            &.selected {
+                background-color: var(--color-filter-plain-bg);
+                color: var(--color-filter-plain);
+                border-color: var(--color-text-highlight);
+            }
+            &:hover {
+                background-color: var(--color-filter-plain-bg);
+                color: var(--color-filter-plain);
+            }
+        }
+        img {
+            display: none;
+        }
+    }
+}
 </style>

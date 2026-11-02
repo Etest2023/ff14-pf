@@ -180,4 +180,14 @@ function toggleTheme(newTheme) {
     border: 1px solid #ddd;
     background-color: var(--color-text);
 }
+
+@media (max-width: 768px) {
+    .footer-info {
+        display: none;
+    }
+    .theme-toggle {
+        position: static;
+        order: -1;
+    }
+}
 </style>

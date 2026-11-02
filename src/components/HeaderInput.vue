@@ -59,4 +59,13 @@ defineEmits(['setData']);
         cursor: pointer;
     }
 }
+
+@media (max-width: 768px) {
+    .keyword-ct {
+        padding-left: 0;
+        input {
+            width: 100%;
+        }
+    }
+}
 </style>
