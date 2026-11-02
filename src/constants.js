@@ -1,4 +1,5 @@
-import jobsSpriteUrl from '@jobs/jobs-sprite.png';
+// 雪碧图位于 public/，index.html 中有对应的 preload 链接
+const jobsSpriteUrl = import.meta.env.BASE_URL + 'jobs-sprite.png';
 
 export const themeKey = 'ff14pf_theme';
 

@@ -1,7 +1,8 @@
-// 生成职业图标雪碧图：src/assets/jobs/{base,filled}/*.png -> jobs-sprite.png
+// 生成职业图标雪碧图：src/assets/jobs/{base,filled}/*.png -> public/jobs-sprite.png
 // 用法：pnpm sprite
 // 输出：560x504，10 列 9 行，单元格 56px；索引 0-42 为 base，43-85 为 filled
-// 注意：索引顺序即文件名排序，constants.js 的 JOB_NAMES 必须与产物保持一致
+// 注意：索引顺序即文件名排序，constants.js 的 JOB_NAMES 必须与产物保持一致；
+// 产物在 public/ 下文件名固定，更新后需让客户端缓存失效（如加版本查询串）
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,7 +13,7 @@ const JOBS_DIR = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
     '../src/assets/jobs',
 );
-const OUT = path.join(JOBS_DIR, 'jobs-sprite.png');
+const OUT = path.resolve(JOBS_DIR, '../../public/jobs-sprite.png');
 const CELL = 56;
 const COLS = 10;
 
