@@ -1,7 +1,8 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { getCategoryImgByName } from '@/constants';
 import { useFilterStore } from '@/stores/filter.js';
+import { useListStore } from '@/stores/list.js';
 import { useTrackStore } from '@/stores/track.js';
 import ThePartySlots from './ThePartySlots.vue';
 import TheDescTags from './TheDescTags.vue';
@@ -11,6 +12,34 @@ const props = defineProps({
         type: Object,
         required: true,
     },
+});
+
+// 列表项进入 可视区域 + 上下各一个屏幕高度 时加载详情
+const listStore = useListStore();
+const rootRef = ref(null);
+let observer = null;
+
+onMounted(() => {
+    if (typeof IntersectionObserver === 'undefined') {
+        listStore.getDetail(props.data.id);
+        return;
+    }
+    observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                listStore.getDetail(props.data.id);
+                observer.disconnect();
+            });
+        },
+        // 上下各扩展一个视口高度
+        { rootMargin: '100% 0px 100% 0px' },
+    );
+    observer.observe(rootRef.value);
+});
+
+onBeforeUnmount(() => {
+    observer?.disconnect();
 });
 
 const showCategory = computed(() => {
@@ -35,6 +64,7 @@ function addTrack(id, data) {
 
 <template>
     <div
+        ref="rootRef"
         class="grid-item"
         :class="{ 'show-category': showCategory }"
         :data-id="data.id">
