@@ -1,6 +1,7 @@
 // 生成职业图标雪碧图：src/assets/jobs/{base,filled}/*.png -> public/jobs-sprite.png
 // 用法：pnpm sprite
-// 输出：560x504，10 列 9 行，单元格 56px；索引 0-42 为 base，43-85 为 filled
+// 输出：600x540，10 列 9 行，单元格步距 60px（56px 图标 + 4px 间距，图标在单元格内偏移 2px）；
+// 索引 0-42 为 base，43-85 为 filled
 // 注意：索引顺序即文件名排序，constants.js 的 JOB_NAMES 必须与产物保持一致；
 // 产物在 public/ 下文件名固定，更新后需让客户端缓存失效（如加版本查询串）
 import fs from 'node:fs';
@@ -13,8 +14,10 @@ const JOBS_DIR = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
     '../src/assets/jobs',
 );
-const OUT = path.resolve(JOBS_DIR, '../../public/jobs-sprite.png');
-const CELL = 56;
+const OUT = path.resolve(JOBS_DIR, '../../../public/jobs-sprite.png');
+const CELL = 56; // 图标尺寸
+const GAP = 4; // 相邻图标间距
+const STRIDE = CELL + GAP; // 单元格步距
 const COLS = 10;
 
 const names = fs
@@ -33,16 +36,16 @@ for (let i = 0; i < names.length * 2; i++) {
     if (style === 'filled') img.resize(CELL, CELL);
     composites.push({
         input: await img.toBuffer(),
-        left: (i % COLS) * CELL,
-        top: Math.floor(i / COLS) * CELL,
+        left: (i % COLS) * STRIDE + GAP / 2,
+        top: Math.floor(i / COLS) * STRIDE + GAP / 2,
     });
 }
 
 const rows = Math.ceil((names.length * 2) / COLS);
 await sharp({
     create: {
-        width: COLS * CELL,
-        height: rows * CELL,
+        width: COLS * STRIDE,
+        height: rows * STRIDE,
         channels: 4,
         background: { r: 0, g: 0, b: 0, alpha: 0 },
     },
@@ -52,4 +55,4 @@ await sharp({
     .png({ palette: true, colours: 256, quality: 100, dither: 0 })
     .toFile(OUT);
 
-console.log('sprite:', OUT, fs.statSync(OUT).size, 'bytes', `(grid ${COLS}x${rows}, cell ${CELL})`);
+console.log('sprite:', OUT, fs.statSync(OUT).size, 'bytes', `(grid ${COLS}x${rows}, stride ${STRIDE})`);

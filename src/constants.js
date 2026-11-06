@@ -112,7 +112,7 @@ export const getCategoryImgByName = (name) => {
     );
 };
 
-// 职业图标雪碧图：560x504，10 列 9 行，单元格 56px
+// 职业图标雪碧图：600x540，10 列 9 行，单元格步距 60px（56px 图标 + 4px 间距，图标在单元格内偏移 2px）
 // 索引 0-42 为 base 图标，43-85 为 filled 图标，顺序与 JOB_NAMES 一致
 const JOB_NAMES = [
     'ACN', 'ALC', 'ARC', 'ARM', 'AST', 'BLM', 'BLU', 'BRD', 'BSM', 'BST',
@@ -122,9 +122,11 @@ const JOB_NAMES = [
     'WAR', 'WHM', 'WVR',
 ];
 const SPRITE_COLS = 10;
-const SPRITE_CELL = 56;
-const SPRITE_W = 560;
-const SPRITE_H = 504;
+const SPRITE_CELL = 56; // 图标尺寸
+const SPRITE_GAP = 4; // 相邻图标间距
+const SPRITE_STRIDE = SPRITE_CELL + SPRITE_GAP;
+const SPRITE_W = 600;
+const SPRITE_H = 540;
 const SLOT_SIZE = 32; // ThePartySlots 的 --var-slot-size
 
 // 返回雪碧图背景样式。未填充图标显示为槽位的 80%（对应 .slot 的 background-size: 80%），
@@ -141,6 +143,6 @@ export const getJobIconStyle = (name, filled = false) => {
     return {
         backgroundImage: `url(${jobsSpriteUrl})`,
         backgroundSize: `${SPRITE_W * scale}px ${SPRITE_H * scale}px`,
-        backgroundPosition: `${offset - col * display}px ${offset - row * display}px`,
+        backgroundPosition: `${offset - (col * SPRITE_STRIDE + SPRITE_GAP / 2) * scale}px ${offset - (row * SPRITE_STRIDE + SPRITE_GAP / 2) * scale}px`,
     };
 };
