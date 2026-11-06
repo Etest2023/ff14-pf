@@ -40,7 +40,7 @@ const MainListLoading = computed(() => {
 
 <style scoped>
 main {
-    padding-top: var(--var-header-height);
+    padding-top: calc(var(--var-header-height) + var(--filter-panel-height, 0px));
     padding-left: var(--main-padding-h);
     padding-right: var(--main-padding-right);
     padding-bottom: 60px;
@@ -82,9 +82,6 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    main {
-        margin-top: var(--filter-panel-height, 0px);
-    }
     .grid-header {
         display: none;
     }
