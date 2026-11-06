@@ -44,6 +44,15 @@ export const getList = ({
         .then((res) => res.json())
         .then((result) => {
             result?.data?.forEach(handleData);
+            // 将超过 1 分钟未更新的列表项移到末尾（sort 稳定，同组内保持原顺序）
+            if (result?.data) {
+                const now = Date.now();
+                result.data.sort(
+                    (a, b) =>
+                        (now - new Date(a.updated_at) > 60 * 1000) -
+                        (now - new Date(b.updated_at) > 60 * 1000),
+                );
+            }
             return result;
         });
 };
