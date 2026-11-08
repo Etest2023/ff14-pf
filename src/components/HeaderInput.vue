@@ -10,17 +10,18 @@ defineEmits(['setData']);
 </script>
 
 <template>
-    <div class="keyword-ct">
+    <form class="keyword-ct" action="" @submit.prevent="$emit('setData', $event.target.keyword.value)">
         <input
             id="keyword"
             name="keyword"
-            type="text"
+            type="search"
+            enterkeyhint="search"
             placeholder="搜索关键词"
             autocomplete="on"
             :value="data"
             @change="$emit('setData', $event.target.value)" />
         <div class="clicker" @click="$emit('setData', data)"></div>
-    </div>
+    </form>
 </template>
 <style scoped>
 .keyword-ct {
@@ -38,6 +39,8 @@ defineEmits(['setData']);
         border-radius: 8px;
         border: 1px solid #ddd;
         outline: none;
+        appearance: none;
+        -webkit-appearance: none;
         font-size: 14px;
         opacity: 0.5;
         background-image: var(--svg-search);
