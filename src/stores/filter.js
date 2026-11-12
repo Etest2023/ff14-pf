@@ -58,6 +58,16 @@ export const useFilterStore = defineStore('filter', () => {
         localStorage.setItem(filterKey, lsData.join(','));
         usePaginationStore().reset();
     }
+    // 同时设置分类与搜索词：只在最终状态下同步一次地址栏，
+    // 避免 setCategory 先清空搜索词触发 history.back() 与随后的设置产生竞态
+    function setCategoryAndKeyword(c, k) {
+        category.value = c;
+        keyword.value = k;
+        syncKeywordUrl(k);
+        lsData[1] = c;
+        localStorage.setItem(filterKey, lsData.join(','));
+        usePaginationStore().reset();
+    }
     // 首次加载时，地址栏的搜索参数优先作为搜索词
     const keyword = ref(getUrlKeyword());
     function setKeyword(k) {
@@ -80,6 +90,7 @@ export const useFilterStore = defineStore('filter', () => {
         keyword,
         setDatacenter,
         setCategory,
+        setCategoryAndKeyword,
         setKeyword,
     };
 });
