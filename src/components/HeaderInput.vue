@@ -33,7 +33,7 @@ defineEmits(['setData']);
     input {
         display: block;
         box-sizing: border-box;
-        width: 240px;
+        width: 270px;
         height: 32px;
         padding: 0 32px 0 8px;
         border-radius: 8px;
