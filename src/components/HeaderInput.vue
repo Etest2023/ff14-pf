@@ -48,6 +48,16 @@ defineEmits(['setData']);
         background-size: 1rem auto;
         background-repeat: no-repeat;
 
+        /* 禁用 WebKit 内建的搜索图标 / 清除按钮，避免 UA 样式覆盖自定义背景图 */
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+            display: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
         &:focus {
             opacity: 1;
         }

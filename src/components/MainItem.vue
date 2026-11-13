@@ -45,6 +45,9 @@ onBeforeUnmount(() => {
 const showCategory = computed(() => {
     return props.data.category && props.data.category !== 'None';
 });
+// 更新时间显示为 1 分钟前（或已过期）的列表项置灰
+// 与时间列的 v-once 保持一致：仅在初始化时计算一次，后续数据变化不再重新计算
+const isStale = !!props.data._updateBefore && !props.data._updateBefore.endsWith('秒前');
 const categoryImg = computed(() => {
     return getCategoryImgByName(props.data.category);
 });
@@ -66,7 +69,7 @@ function addTrack(id, data) {
     <div
         ref="rootRef"
         class="grid-item"
-        :class="{ 'show-category': showCategory }"
+        :class="{ 'show-category': showCategory, 'is-stale': isStale }"
         :data-id="data.id">
         <div class="img">
             <img :src="categoryImg" alt="" />
@@ -114,6 +117,9 @@ function addTrack(id, data) {
 <style scoped>
 .grid-item {
     position: relative;
+}
+.is-stale {
+    filter: grayscale(50%);
 }
 .img {
     position: absolute;
